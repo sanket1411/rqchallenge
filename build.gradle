@@ -14,10 +14,21 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'javax.inject:javax.inject:1'
+    implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'io.springfox:springfox-boot-starter:3.0.0'
+    implementation 'org.aspectj:aspectjweaver:1.9.7'
+    implementation 'org.aspectj:aspectjrt:1.9.7'
+    implementation 'junit:junit:4.13.1'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
 }
 
 test {
     useJUnitPlatform()
+    useJUnit()
 }
