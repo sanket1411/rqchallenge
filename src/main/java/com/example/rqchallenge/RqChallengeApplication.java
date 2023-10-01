@@ -14,18 +14,16 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 public class RqChallengeApplication {
+  public static void main(String[] args) {
+    SpringApplication.run(RqChallengeApplication.class, args);
+  }
 
-    public static void main(String[] args) {
-        SpringApplication.run(RqChallengeApplication.class, args);
-    }
-
-    @Bean
-    public Docket productApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
-                .paths(PathSelectors.any())
-                .build();
-    }
-
+  @Bean
+  public Docket productApi() {
+    return new Docket(DocumentationType.SWAGGER_2)
+        .select()
+        .apis(RequestHandlerSelectors.withClassAnnotation(RestController.class))
+        .paths(PathSelectors.any())
+        .build();
+  }
 }

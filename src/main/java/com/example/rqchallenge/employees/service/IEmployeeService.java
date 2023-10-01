@@ -5,18 +5,18 @@ import com.example.rqchallenge.employees.models.Employee;
 import java.util.List;
 
 public interface IEmployeeService {
-    
-    public List<Employee> getAllEmployees();
 
-    public List<Employee> getEmployeesByNameSearch(String searchString);
+  public List<Employee> getAllEmployees();
 
-    public Employee getEmployeeById(String id);
+  public List<Employee> getEmployeesByNameSearch(String searchString);
 
-    public Integer getHighestSalaryOfEmployees();
+  public Employee getEmployeeById(String id);
 
-    public List<String> getTopTenHighestEarningEmployeeNames();
+  public Integer getHighestSalaryOfEmployees();
 
-    public Employee createEmployee(CreateEmployee createEmployee);
-    
-    public String deleteEmployeeById(String id);
+  public List<String> getTopTenHighestEarningEmployeeNames();
+
+  public Employee createEmployee(CreateEmployee createEmployee);
+
+  public String deleteEmployeeById(String id);
 }

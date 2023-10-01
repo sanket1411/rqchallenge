@@ -6,7 +6,7 @@ import java.util.List;
 
 @Data
 public class CreateEmployeesResponse {
-    String status;
-    Employee data;
-    String message;
+  String status;
+  Employee data;
+  String message;
 }

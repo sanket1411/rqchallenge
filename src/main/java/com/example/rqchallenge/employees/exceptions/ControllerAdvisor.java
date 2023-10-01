@@ -14,47 +14,44 @@ import java.util.Map;
 @ControllerAdvice
 public class ControllerAdvisor extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<Object> handleRuntimeException(
-            Exception ex, WebRequest request) {
-        return buildResponseEntity("Something went wrong.We are on it.", HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+  @ExceptionHandler(RuntimeException.class)
+  public ResponseEntity<Object> handleRuntimeException(Exception ex, WebRequest request) {
+    return buildResponseEntity(
+        "Something went wrong.We are on it.", HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 
+  @ExceptionHandler(javax.validation.ConstraintViolationException.class)
+  public ResponseEntity<Object> handleIllegalArgumentException(Exception ex, WebRequest request) {
 
-    @ExceptionHandler(javax.validation.ConstraintViolationException.class)
-    public ResponseEntity<Object> handleIllegalArgumentException(
-            Exception ex, WebRequest request) {
+    return buildResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
+  }
 
-        return buildResponseEntity(ex.getMessage(), HttpStatus.BAD_REQUEST);
-    }
+  @ExceptionHandler(EmployeeNotFoundException.class)
+  public ResponseEntity<Object> handleEmployeeNotFoundException(
+      EmployeeNotFoundException ex, WebRequest request) {
 
-    @ExceptionHandler(EmployeeNotFoundException.class)
-    public ResponseEntity<Object> handleEmployeeNotFoundException(
-            EmployeeNotFoundException ex, WebRequest request) {
+    return buildResponseEntity(ex.getMessage(), HttpStatus.NOT_FOUND);
+  }
 
-        return buildResponseEntity(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
+  @ExceptionHandler(NoDataFoundException.class)
+  public ResponseEntity<Object> handleNoDataFoundException(
+      NoDataFoundException ex, WebRequest request) {
 
-    @ExceptionHandler(NoDataFoundException.class)
-    public ResponseEntity<Object> handleNoDataFoundException(
-            NoDataFoundException ex, WebRequest request) {
+    return buildResponseEntity(ex.getMessage(), HttpStatus.NOT_FOUND);
+  }
 
-        return buildResponseEntity(ex.getMessage(), HttpStatus.NOT_FOUND);
-    }
+  @ExceptionHandler(EmployeeCreationException.class)
+  public ResponseEntity<Object> handleEmployeeCreationException(
+      EmployeeCreationException ex, WebRequest request) {
 
-    @ExceptionHandler(EmployeeCreationException.class)
-    public ResponseEntity<Object> handleEmployeeCreationException(
-            EmployeeCreationException ex, WebRequest request) {
+    return buildResponseEntity(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+  }
 
-        return buildResponseEntity(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-    }
+  private ResponseEntity<Object> buildResponseEntity(String message, HttpStatus httpStatus) {
+    Map<String, Object> body = new LinkedHashMap<>();
+    body.put("timestamp", LocalDateTime.now());
+    body.put("message", message);
 
-    private ResponseEntity<Object> buildResponseEntity(String message, HttpStatus httpStatus) {
-        Map<String, Object> body = new LinkedHashMap<>();
-        body.put("timestamp", LocalDateTime.now());
-        body.put("message", message);
-
-        return new ResponseEntity<>(body, httpStatus);
-    }
-
+    return new ResponseEntity<>(body, httpStatus);
+  }
 }
