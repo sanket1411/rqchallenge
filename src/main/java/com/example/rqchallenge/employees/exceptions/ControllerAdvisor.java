@@ -20,7 +20,8 @@ public class ControllerAdvisor extends ResponseEntityExceptionHandler {
         return buildResponseEntity("Something went wrong.We are on it.", HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    @ExceptionHandler(IllegalArgumentException.class)
+
+    @ExceptionHandler(javax.validation.ConstraintViolationException.class)
     public ResponseEntity<Object> handleIllegalArgumentException(
             Exception ex, WebRequest request) {
 

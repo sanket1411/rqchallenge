@@ -116,3 +116,14 @@ deleteEmployee(String id)
             "status": "success",
             "message": "successfully! deleted Record"
         }
+
+Swagger endpoint available at:
+```
+http://localhost:8080/swagger-ui/index.html#/
+```
+
+Testcases:
+```
+EmployeeControllerTests - Only controller level
+EmployeeServiceTests - Controller + Service level
+```

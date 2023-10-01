@@ -6,12 +6,15 @@ import com.example.rqchallenge.employees.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @RestController
+@Validated
 public class EmployeeController implements IEmployeeController {
 
     private EmployeeService employeeService;
@@ -52,7 +55,7 @@ public class EmployeeController implements IEmployeeController {
     }
 
     @Override
-    public ResponseEntity<Employee> createEmployee(@Valid CreateEmployee createEmployee) {
+    public ResponseEntity<Employee> createEmployee(CreateEmployee createEmployee) {
         Employee employee = employeeService.createEmployee(createEmployee);
         return new ResponseEntity<>(employee, HttpStatus.OK);
     }
