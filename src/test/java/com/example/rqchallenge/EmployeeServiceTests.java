@@ -3,7 +3,6 @@ package com.example.rqchallenge;
 import com.example.rqchallenge.employees.EmployeeController;
 import com.example.rqchallenge.employees.service.EmployeeService;
 import com.example.rqchallenge.employees.restexecutor.RestTemplateExecutor;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.hamcrest.Matchers;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +25,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-;
 
 @WebMvcTest(EmployeeController.class)
 @RunWith(SpringRunner.class)
@@ -44,8 +42,6 @@ public class EmployeeServiceTests {
   }
 
   @Autowired private MockMvc mockMvc;
-
-  @Autowired private ObjectMapper objectMapper;
 
   @Test
   public void testGetEmployees() throws Exception {
